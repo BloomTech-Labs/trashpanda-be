@@ -3,6 +3,7 @@ const { gql } = require("apollo-server");
 const typeDefs = gql`
   type Query {
     material: Material
+    materials: [Material]
     family: Family
   }
   type Family {

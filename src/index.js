@@ -1,9 +1,16 @@
+require("dotenv").config();
 const { ApolloServer } = require("apollo-server");
 
+const EarthAPI = require("./datasources/earth");
 const typeDefs = require("./schema");
+const resolvers = require("./resolvers");
 
 const server = new ApolloServer({
-  typeDefs
+  typeDefs,
+  resolvers,
+  dataSources: () => ({
+    earthAPI: new EarthAPI()
+  })
 });
 
 server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
