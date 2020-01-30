@@ -1,5 +1,5 @@
 node_modules
-materials.db3
+database/materials.db3
 
 # dotenv environment variables file
 .env
