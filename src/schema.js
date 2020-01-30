@@ -5,6 +5,7 @@ const typeDefs = gql`
     material: Material
     materials: [Material]
     family: Family
+    families: [Family]
   }
   type Family {
     material_ids: [Int]
