@@ -4,6 +4,7 @@ const typeDefs = require("./schema");
 
 const server = new ApolloServer({
   typeDefs,
+  //introspection flag fixes 400 response errors on heroku
   introspection: true
 });
 
