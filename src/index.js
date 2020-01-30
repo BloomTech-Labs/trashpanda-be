@@ -14,7 +14,10 @@ const server = new ApolloServer({
   }),
 
   //introspection flag fixes 400 response errors on heroku
-  introspection: true
+  introspection: true,
+
+  //to mock our typeDefs for testing
+  mocks: true,
 
 });
 
