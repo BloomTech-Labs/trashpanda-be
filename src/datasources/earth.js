@@ -1,4 +1,5 @@
 const { RESTDataSource } = require("apollo-datasource-rest");
+const Materials = require("../../database/models/materials-model");
 
 class EarthAPI extends RESTDataSource {
   constructor() {
@@ -6,13 +7,19 @@ class EarthAPI extends RESTDataSource {
     this.baseURL = `http://api.earth911.com`;
     this.apiKey = `?api_key=${process.env.earth911_secret}`;
   }
-  materialReducer(material) {
+
+  materialReducer(binInfo, material) {
     return {
       description: material.description,
       material_id: material.material_id,
-      long_description: material.long_description
+      long_description: material.long_description,
+      // "!!+" converts 0/1 into boolean
+      bin_trash: binInfo && !!+binInfo.bin_trash,
+      bin_recycle: binInfo && !!+binInfo.bin_recycle,
+      bin_compost: binInfo && !!+binInfo.bin_compost
     };
   }
+
   familyReducer(family) {
     return {
       material_ids: family.material_ids,
@@ -21,13 +28,23 @@ class EarthAPI extends RESTDataSource {
       family_type_id: family.family_type_id
     };
   }
+
   async getAllMaterials() {
+    const dbMaterials = await Materials.find();
     const response = await this.get(`earth911.getMaterials${this.apiKey}`);
     const result = JSON.parse(response).result;
-    return Array.isArray(result)
-      ? result.map(material => this.materialReducer(material))
-      : [];
+    if (Array.isArray(result)) {
+      return result.map(material => {
+        const dbMaterial = dbMaterials.filter(
+          dbMat => dbMat.material_id === material.material_id
+        )[0];
+        return this.materialReducer(dbMaterial, material);
+      });
+    } else {
+      return [];
+    }
   }
+
   async getAllFamilies() {
     const response = await this.get(
       `earth911.getFamilies${this.apiKey}&family_type_id=1`

@@ -21,6 +21,10 @@ const typeDefs = gql`
     notes: String
     dropoff: Boolean
     pickup: Boolean
+    bin_trash: Boolean
+    bin_recycle: Boolean 
+    bin_compost: Boolean
+
   }
 `;
 
