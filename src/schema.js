@@ -2,7 +2,7 @@ const { gql } = require("apollo-server");
 
 const typeDefs = gql`
   type Query {
-    material: Material
+    material(id: Int): Material
     materials: [Material]
     family: Family
     families: [Family]

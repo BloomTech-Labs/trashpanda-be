@@ -8,6 +8,7 @@ class EarthAPI extends RESTDataSource {
   }
   materialReducer(material) {
     return {
+      id: material.material_id,
       description: material.description,
       material_id: material.material_id,
       long_description: material.long_description
@@ -36,6 +37,13 @@ class EarthAPI extends RESTDataSource {
     return Array.isArray(result)
       ? result.map(family => this.familyReducer(family))
       : [];
+  }
+  async getMaterial({ material_id }) {
+    const response = await this.get(`earth911.getMaterials${this.apiKey}`, {
+      material_id
+    });
+    const material = JSON.parse(response).result;
+    return this.materialReducer(material[material_id]);
   }
 }
 
