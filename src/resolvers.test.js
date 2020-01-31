@@ -1,38 +1,74 @@
-const { createTestClient } = require('apollo-server-testing');
+const resolvers = require('./resolvers');
 
-// const { query } = createTestClient(server);
+describe('[Query.materials]', () => {
+  const mockContext = {
+    dataSources: {
+      earthAPI: { 
+        getAllMaterials: jest.fn(),
+        getAllFamilies: jest.fn() 
+       }
+ 
+    }
+  }
 
-// query({
-//   query: materials,
-//   variables: { material_id: 1, description: "yatayata", long_description: "yatayata2" }
-// });
+  const { getAllMaterials, getAllFamilies } = mockContext.dataSources.earthAPI;
 
-const { ApolloServer } = require("apollo-server");
+  it('calls earth.js to get all materials', async () => {
+    getAllMaterials.mockReturnValueOnce(
+      [ 
+        { 
+        description: "Crayons",
+        material_id: "0",
+        long_description: "Can be donated or used as fire starters, OR MELTED INTO NEW CRAYONS. Why are you trying to throw away crayons, you dolt."
+      },
+      {
+        description: "T.P.",
+        material_id: "007",
+        long_description: "They have a grave misunderstanding, the T actually stands for \"Tuxedo\""
+      }
+    
+     ]);
 
-const EarthAPI = require("./datasources/earth");
-const typeDefs = require("./schema");
-const resolvers = require("./resolvers");
+     const res = await resolvers.Query.materials(null, {}, mockContext);
 
-it('fetches materials', async () => {
-  const earthAPI = new EarthAPI();
+     expect(res).toEqual(
+         [{ 
+          description: "Crayon",
+          material_id: "0",
+          long_description: "Can be donated or used as fire starters, OR MELTED INTO NEW CRAYONS. Why are you trying to throw away crayons, you dolt."
+        },
+        {
+          description: "T.P.",
+          material_id: "007",
+          long_description: "They have a grave misunderstanding, the T actually stands for \"Tuxedo\""
+        }]
+     )
 
-  // create a test server to test against, using our production typeDefs,
-  // resolvers, and dataSources.
-  const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    dataSources: () => ({ earthAPI }),
-    context: () => ({ material: { material_id: 1, description: "yatayata", long_description: "yatayata2"} }),
   });
 
-  // mock the dataSource's underlying fetch methods
-  earthAPI.get = jest.fn(() => [mockGetAllMaterials]);
+  it('calls earth.js to get all families', async () => {
+    getAllFamilies.mockReturnValueOnce(
+      [ 
+        { 
+          material_ids: 1,
+          family_id: 1,
+          description: "We only come out at night, and we are many...",
+          family_type_id: "Bear"
+      }
+    
+     ]);
 
+     const res = await resolvers.Query.families(null, {}, mockContext);
 
-  // use the test server to create a query function
-  const { query } = createTestClient(server);
+     expect(res).toEqual(
+         [{ 
+          material_ids: 2,
+          family_id: 1,
+          description: "We only come out at night, and we are many...",
+          family_type_id: "Bear"
+      }]
+     )
 
-  // run query against the server and snapshot the output
-  const res = await query({ query: materials, material: { material_id: 1, description: "yatayata", long_description: "yatayata2" } });
-  expect(res).toMatchSnapshot();
-});
+  });
+
+})
