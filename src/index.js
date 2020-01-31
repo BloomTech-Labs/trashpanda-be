@@ -13,11 +13,14 @@ const server = new ApolloServer({
   }),
   //introspection flag fixes 400 response errors on heroku
   introspection: true,
+  //to mock our typeDefs for testing
+  mocks: true,
   //add console error logs
   formatError: err => {
     console.log(err.stack);
     return err;
   }
+
 });
 
 server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
