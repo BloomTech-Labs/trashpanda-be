@@ -1,6 +1,6 @@
 exports.up = function(knex) {
   return knex.schema.table("materials", table => {
-    table.boolean("bin_special").notNullable();
+    table.boolean("bin_special");
   });
 };
 
