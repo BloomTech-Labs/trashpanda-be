@@ -7,14 +7,19 @@ const resolvers = require("./resolvers");
 
 const server = new ApolloServer({
   typeDefs,
-
   resolvers,
   dataSources: () => ({
     earthAPI: new EarthAPI()
   }),
-
   //introspection flag fixes 400 response errors on heroku
-  introspection: true
+  introspection: true,
+  //to mock our typeDefs for testing
+  mocks: true,
+  //add console error logs
+  formatError: err => {
+    console.log(err.stack);
+    return err;
+  }
 
 });
 
