@@ -6,6 +6,7 @@ const typeDefs = gql`
     materials: [Material]
     family: Family
     families: [Family]
+    locations(latitude: Float!, longitude: Float!): [Location]
   }
   type Family {
     material_ids: [Int]
@@ -22,9 +23,31 @@ const typeDefs = gql`
     dropoff: Boolean
     pickup: Boolean
     bin_trash: Boolean
-    bin_recycle: Boolean 
+    bin_recycle: Boolean
     bin_compost: Boolean
+  }
 
+  type Location {
+    curbside: Boolean
+    municipal: Boolean
+    description: String
+    longitude: Float
+    latitude: Float
+    address: String
+    city: String
+    province: String
+    country: String
+    postal_code: String
+    region: String
+    full_address: String
+    national: Boolean
+    location_type_id: Int
+    event_only: Boolean
+    fax: String
+    hours: String
+    phone: String
+    notes_public: String
+    url: String
   }
 `;
 
