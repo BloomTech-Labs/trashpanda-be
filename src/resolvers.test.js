@@ -20,12 +20,18 @@ describe('[Query] in resolvers file', () => {
         { 
         description: "Crayons",
         material_id: "0",
-        long_description: "Can be donated or used as fire starters, OR MELTED INTO NEW CRAYONS. Why are you trying to throw away crayons, you dolt."
+        long_description: "Can be donated or used as fire starters, OR MELTED INTO NEW CRAYONS. Why are you trying to throw away crayons, you dolt.",
+        bin_trash: false,
+        bin_recycle: true,
+        bin_compost: false
       },
       {
         description: "T.P.",
         material_id: "007",
-        long_description: "They have a grave misunderstanding, the T actually stands for \"Tuxedo\""
+        long_description: "They have a grave misunderstanding, the T actually stands for \"Tuxedo\"",
+        bin_trash: "panda",
+        bin_recycle: true,
+        bin_compost: true
       }
     
      ]);
@@ -36,12 +42,18 @@ describe('[Query] in resolvers file', () => {
          [{ 
           description: "Crayons",
           material_id: "0",
-          long_description: "Can be donated or used as fire starters, OR MELTED INTO NEW CRAYONS. Why are you trying to throw away crayons, you dolt."
+          long_description: "Can be donated or used as fire starters, OR MELTED INTO NEW CRAYONS. Why are you trying to throw away crayons, you dolt.",
+          bin_trash: false,
+          bin_recycle: true,
+          bin_compost: false
         },
         {
           description: "T.P.",
           material_id: "007",
-          long_description: "They have a grave misunderstanding, the T actually stands for \"Tuxedo\""
+          long_description: "They have a grave misunderstanding, the T actually stands for \"Tuxedo\"",
+          bin_trash: false,
+          bin_recycle: true,
+          bin_compost: true
         }]
      )
 
