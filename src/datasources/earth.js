@@ -1,6 +1,6 @@
 const { RESTDataSource } = require("apollo-datasource-rest");
 const Materials = require("../../database/models/materials-model");
-const Zipcodes = require("../../database/models/zipcodes-model")
+const PostalCodes = require("../../database/models/postal_codes-model")
 
 class EarthAPI extends RESTDataSource {
   constructor() {
@@ -31,10 +31,10 @@ class EarthAPI extends RESTDataSource {
     };
   }
 
-  //locationObj is actually locationObj or dbZipcodes
+  //locationObj is actually locationObj 
  locationObjReducer(locationObj){
     return{
-      zipcode: locationObj.zipcode ? locationObj.zipcode : locationObj.postal_code,
+      postal_code: locationObj.postal_code,
       latitude: locationObj.latitude ,
       longitude: locationObj.longitude 
     }
@@ -111,21 +111,22 @@ class EarthAPI extends RESTDataSource {
   ////POSTAL DATA AND LAT/LONG/////////////////////////////////////////////////////
   //Despite the documentation, this query requires the country
 
-  async getPostalData({ zipcode }){
+  async getPostalData({ postal_code, country }){
       let locationObj = {};
-    //check knexDB first (find zipcode)
-      const dbZipcodes = await Zipcodes.findByZipcode(zipcode)
-      if(dbZipcodes){
-          //return the zipcode from knexDB (if zipcode)
-          return this.locationObjReducer(dbZipcodes);
+    //check knexDB first (find postal_code)
+      const dbPostalCodes = await PostalCodes.findByPostalCode(postal_code)
+      if(dbPostalCodes){
+          //return the postal_code from knexDB (if postal_code)
+          // return this.locationObjReducer(dbPostalCodes);
+          return dbPostalCodes
       } else { 
-          //Get the info, secondary (if no zipcode)
-          const response = await this.get(`earth911.getPostalData${this.apiKey}&postal_code=${zipcode}&country=US`);
+          //Get the info, secondary (if no postal_code)
+          const response = await this.get(`earth911.getPostalData${this.apiKey}&postal_code=${postal_code}&country=${country}`);
           locationObj = await JSON.parse(response).result;
-              //add to knexDB, tertiary (if no zipcode)
-              const processedZip = this.locationObjReducer(locationObj);
-              await Zipcodes.add(processedZip)
-              return processedZip;
+              //add to knexDB, tertiary (if no postal_code)
+              const processedPostal = this.locationObjReducer(locationObj);
+              await PostalCodes.add(processedPostal)
+              return processedPostal;
       }
   }
 }

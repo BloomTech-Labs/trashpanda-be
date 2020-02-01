@@ -1,6 +1,6 @@
 const resolvers = require('./resolvers');
 
-describe('[Query.materials]', () => {
+describe('[Query] in resolvers file', () => {
   const mockContext = {
     dataSources: {
       earthAPI: { 
@@ -72,11 +72,11 @@ describe('[Query.materials]', () => {
 
   });
 
-  it('calls earth.js to get zipcode information', async () => {
+  it('calls earth.js to get postal_code information', async () => {
     getPostalData.mockReturnValueOnce(
       
         { 
-          zipcode: "00000",
+          postal_code: "00000",
           latitude: 36.7898,
           longitude: 46.5672
       }
@@ -84,13 +84,14 @@ describe('[Query.materials]', () => {
      );
 
      //Mimicking Frontend input
-      const zipcode = "00000"
+      const postal_code = "00000"
+      const country = "US"
       
-     const res = resolvers.Query.zipcode(null, {zipcode}, mockContext);
+     const res = resolvers.Query.postal_code(null, {postal_code, country}, mockContext);
 
      expect(res).toEqual(
       { 
-        zipcode: "00000",
+        postal_code: "00000",
         latitude: 36.7898,
         longitude: 46.5672
     }

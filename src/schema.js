@@ -5,7 +5,7 @@ const typeDefs = gql`
     material(id: Int): Material
     materials: [Material]
     family: Family
-    zipcode(zipcode: String): Zipcode
+    postal_code(postal_code: String!, country: String!): PostalCode
     families: [Family]
     locations(latitude: Float!, longitude: Float!): [Location]
   }
@@ -51,9 +51,8 @@ const typeDefs = gql`
     url: String
   }
 
-  type Zipcode {
-    id: Int!
-    zipcode: String!
+  type PostalCode {
+    postal_code: String!
     longitude: Float!
     latitude: Float!
   }

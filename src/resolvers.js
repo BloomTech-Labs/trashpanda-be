@@ -8,8 +8,8 @@ module.exports = {
       dataSources.earthAPI.getAllLocations({ latitude, longitude }),
     material: (_, { id }, { dataSources }) =>
       dataSources.earthAPI.getMaterial({ material_id: id }),
-    zipcode: (_, { zipcode }, {dataSources}) => 
-      dataSources.earthAPI.getPostalData({zipcode: zipcode})
+      postal_code: (_, { postal_code, country }, {dataSources}) => 
+      dataSources.earthAPI.getPostalData({postal_code: postal_code, country: country})
     
   }
 };
