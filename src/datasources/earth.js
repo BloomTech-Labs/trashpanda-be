@@ -31,7 +31,6 @@ class EarthAPI extends RESTDataSource {
     };
   }
 
-  //locationObj is actually locationObj 
  locationObjReducer(locationObj){
     return{
       postal_code: locationObj.postal_code,
@@ -117,7 +116,6 @@ class EarthAPI extends RESTDataSource {
       const dbPostalCodes = await PostalCodes.findByPostalCode(postal_code)
       if(dbPostalCodes){
           //return the postal_code from knexDB (if postal_code)
-          // return this.locationObjReducer(dbPostalCodes);
           return dbPostalCodes
       } else { 
           //Get the info, secondary (if no postal_code)
