@@ -5,7 +5,8 @@ const typeDefs = gql`
     material(id: Int): Material
     materials: [Material]
     family: Family
-    families: [Family]
+    families: [Family],
+    zipcode(zipcode: String): Zipcode
   }
   type Family {
     material_ids: [Int]
@@ -25,6 +26,13 @@ const typeDefs = gql`
     bin_recycle: Boolean 
     bin_compost: Boolean
 
+  }
+
+  type Zipcode {
+    id: Int!
+    zipcode: String!
+    longitude: Float!
+    latitude: Float!
   }
 `;
 
