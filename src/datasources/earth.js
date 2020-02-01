@@ -1,5 +1,6 @@
 const { RESTDataSource } = require("apollo-datasource-rest");
 const Materials = require("../../database/models/materials-model");
+const PostalCodes = require("../../database/models/postal_codes-model")
 
 class EarthAPI extends RESTDataSource {
   constructor() {
@@ -30,12 +31,20 @@ class EarthAPI extends RESTDataSource {
     };
   }
 
+ locationObjReducer(locationObj){
+    return{
+      postal_code: locationObj.postal_code,
+      latitude: locationObj.latitude ,
+      longitude: locationObj.longitude 
+    }
+  };
+
   locationReducer(location) {
     return {
       ...location,
       full_address: `${location.address}, ${location.city}, ${location.province} ${location.postal_code}`
     };
-  }
+  };
 
   async getAllMaterials() {
     const dbMaterials = await Materials.find();
@@ -86,12 +95,37 @@ class EarthAPI extends RESTDataSource {
       return this.locationReducer(parsedDetails.result[id]);
     });
 
+  }
+
+
   async getMaterial({ material_id }) {
     const response = await this.get(`earth911.getMaterials${this.apiKey}`, {
       material_id
     });
     const material = JSON.parse(response).result;
     return this.materialReducer(material[material_id]);
+  }
+
+
+  ////POSTAL DATA AND LAT/LONG/////////////////////////////////////////////////////
+  //Despite the documentation, this query requires the country
+
+  async getPostalData({ postal_code, country }){
+      let locationObj = {};
+    //check knexDB first (find postal_code)
+      const dbPostalCodes = await PostalCodes.findByPostalCode(postal_code)
+      if(dbPostalCodes){
+          //return the postal_code from knexDB (if postal_code)
+          return dbPostalCodes
+      } else { 
+          //Get the info, secondary (if no postal_code)
+          const response = await this.get(`earth911.getPostalData${this.apiKey}&postal_code=${postal_code}&country=${country}`);
+          locationObj = await JSON.parse(response).result;
+              //add to knexDB, tertiary (if no postal_code)
+              const processedPostal = this.locationObjReducer(locationObj);
+              await PostalCodes.add(processedPostal)
+              return processedPostal;
+      }
   }
 }
 

@@ -5,6 +5,7 @@ const typeDefs = gql`
     material(id: Int): Material
     materials: [Material]
     family: Family
+    postal_code(postal_code: String!, country: String!): PostalCode
     families: [Family]
     locations(latitude: Float!, longitude: Float!): [Location]
   }
@@ -48,6 +49,12 @@ const typeDefs = gql`
     phone: String
     notes_public: String
     url: String
+  }
+
+  type PostalCode {
+    postal_code: String!
+    longitude: Float!
+    latitude: Float!
   }
 `;
 
