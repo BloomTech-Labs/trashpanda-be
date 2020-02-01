@@ -38,7 +38,14 @@ class EarthAPI extends RESTDataSource {
       latitude: locationObj.latitude ,
       longitude: locationObj.longitude 
     }
-  }
+  };
+
+  locationReducer(location) {
+    return {
+      ...location,
+      full_address: `${location.address}, ${location.city}, ${location.province} ${location.postal_code}`
+    };
+  };
 
   async getAllMaterials() {
     const dbMaterials = await Materials.find();
@@ -65,6 +72,33 @@ class EarthAPI extends RESTDataSource {
       ? result.map(family => this.familyReducer(family))
       : [];
   }
+
+  async getAllLocations({ latitude, longitude }) {
+    //find locations near me
+    const locations = await this.get(
+      `earth911.searchLocations${this.apiKey}&latitude=${latitude}&longitude=${longitude}`
+    );
+    const locationsArr = JSON.parse(locations).result;
+
+    //extract just the location_id field from the data
+    const locationIds = Array.isArray(locationsArr)
+      ? locationsArr.map(location => {
+          return location.location_id;
+        })
+      : [];
+
+    //get location details for each location_id
+    return locationIds.map(async id => {
+      const locationDetails = await this.get(
+        `earth911.getLocationDetails${this.apiKey}&location_id=${id}`
+      );
+      const parsedDetails = JSON.parse(locationDetails);
+      return this.locationReducer(parsedDetails.result[id]);
+    });
+
+  }
+
+  
   async getMaterial({ material_id }) {
     const response = await this.get(`earth911.getMaterials${this.apiKey}`, {
       material_id
