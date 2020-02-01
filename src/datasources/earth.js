@@ -98,7 +98,7 @@ class EarthAPI extends RESTDataSource {
 
   }
 
-  
+
   async getMaterial({ material_id }) {
     const response = await this.get(`earth911.getMaterials${this.apiKey}`, {
       material_id
@@ -115,17 +115,17 @@ class EarthAPI extends RESTDataSource {
       let locationObj = {};
     //check knexDB first (find zipcode)
       const dbZipcodes = await Zipcodes.findByZipcode(zipcode)
-      if(!dbZipcodes){
-          //Get the info, secondary (if no zipcode)
-              const response = await this.get(`earth911.getPostalData${this.apiKey}&postal_code=${zipcode}&country=US`);
-              locationObj = await JSON.parse(response).result;
-                  //add to knexDB, tertiary (if no zipcode)
-                  const processedZip = this.locationObjReducer(locationObj);
-                  await Zipcodes.add(processedZip)
-                  return processedZip;
-      } else { 
+      if(dbZipcodes){
           //return the zipcode from knexDB (if zipcode)
-         return this.locationObjReducer(dbZipcodes);
+          return this.locationObjReducer(dbZipcodes);
+      } else { 
+          //Get the info, secondary (if no zipcode)
+          const response = await this.get(`earth911.getPostalData${this.apiKey}&postal_code=${zipcode}&country=US`);
+          locationObj = await JSON.parse(response).result;
+              //add to knexDB, tertiary (if no zipcode)
+              const processedZip = this.locationObjReducer(locationObj);
+              await Zipcodes.add(processedZip)
+              return processedZip;
       }
   }
 }
