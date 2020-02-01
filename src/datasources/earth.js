@@ -81,7 +81,6 @@ class EarthAPI extends RESTDataSource {
       let locationObj = {};
     //check knexDB first (find zipcode)
       const dbZipcodes = await Zipcodes.findByZipcode(zipcode)
-      console.log("dbZipcodes", dbZipcodes)
       if(!dbZipcodes){
           //Get the info, secondary (if no zipcode)
               const response = await this.get(`earth911.getPostalData${this.apiKey}&postal_code=${zipcode}&country=US`);
