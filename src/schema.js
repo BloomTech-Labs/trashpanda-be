@@ -6,8 +6,9 @@ const typeDefs = gql`
     materials: [Material]
     family: Family
     families: [Family]
-    locations(latitude: Float!, longitude: Float!): [Location]
+    locations(latitude: Float!, longitude: Float!, material_id: Int): [Location]
   }
+
   type Family {
     material_ids: [Int]
     family_id: Int

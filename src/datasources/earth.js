@@ -63,10 +63,19 @@ class EarthAPI extends RESTDataSource {
       : [];
   }
 
-  async getAllLocations({ latitude, longitude }) {
+  getLocationsForMaterial = material_id => {
+    if (material_id) {
+      return `earth911.searchLocations${this.apiKey}&material_id=${material_id}`;
+    } else {
+      return `earth911.searchLocations${this.apiKey}`;
+    }
+  };
+
+  async getAllLocations({ latitude, longitude, material_id }) {
     //find locations near me
+    const hasMaterial = this.getLocationsForMaterial(material_id);
     const locations = await this.get(
-      `earth911.searchLocations${this.apiKey}&latitude=${latitude}&longitude=${longitude}`
+      `${hasMaterial}&latitude=${latitude}&longitude=${longitude}`
     );
     const locationsArr = JSON.parse(locations).result;
 
@@ -85,6 +94,7 @@ class EarthAPI extends RESTDataSource {
       const parsedDetails = JSON.parse(locationDetails);
       return this.locationReducer(parsedDetails.result[id]);
     });
+  }
 
   async getMaterial({ material_id }) {
     const response = await this.get(`earth911.getMaterials${this.apiKey}`, {
