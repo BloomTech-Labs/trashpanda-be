@@ -9,11 +9,6 @@ const mockMaterials = require("./mockResponses")
 
 const Earth911 = require('../datasources/earth')
 
-const { RESTDataSource } = require("apollo-datasource-rest");
-
-const initializeFetch = new RESTDataSource()
-
-
 //Mocking client
 const materials = gql`
 query mock {
