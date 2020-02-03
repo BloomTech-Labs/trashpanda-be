@@ -8,9 +8,9 @@
 
 # API Documentation
 
-#### 1️⃣ Backend deployed at [🚫name service here](🚫add URL here) <br>
+#### Backend deployed at [Heroku](https://trashpanda-be.herokuapp.com/) <br>
 
-## 1️⃣ Getting started
+## Getting started
 
 To get the server running locally:
 
@@ -21,24 +21,27 @@ To get the server running locally:
 
 ### Backend framework goes here
 
-🚫 Why did you choose this framework?
+Along with Node.js, we as a team are using Apollo Server and GraphQL (along with a few other smaller pieces).
 
-- Point One
-- Point Two
-- Point Three
-- Point Four
+- GraphQL empowers the front end developer to only return what they want.
+- Apollo Server has many great tools, such as apollo-datasource that make building a backend easy and structured.
+- Apollo Server takes in data from the Earth911 and allows us to easily access that information on the front end with Apollo Client
+- Knex makes it easy to translate the information to PostgreSQL and SQLite3.
 
 ## 2️⃣ Endpoints
 
-🚫This is a placeholder, replace the endpoints, access controll, and descriptioin to match your project
+🚫This is a placeholder, replace the endpoints, access control, and descriptioin to match your project
 
 #### Organization Routes
 
-| Method | Endpoint                | Access Control | Description                                  |
-| ------ | ----------------------- | -------------- | -------------------------------------------- |
-| GET    | `/organizations/:orgId` | all users      | Returns the information for an organization. |
-| PUT    | `/organizatoins/:orgId` | owners         | Modify an existing organization.             |
-| DELETE | `/organizations/:orgId` | owners         | Delete an organization.                      |
+| Method | Endpoint                                                                             | Access Control   | Description                                                                                                                                     |
+| ------ | ------------------------------------------------------------------------------------ | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| GET    | `earth911.getMaterials${this.apiKey}`                                                | all materials    | Returns all of the materials in the database. Requires an api key.                                                                              |
+| GET    | `earth911.getMaterials${this.apiKey}`                                                | material         | Returns the material with the corresponding material_id. Requires an api key.                                                                   |
+| GET    | `earth911.searchLocations${this.apiKey}&latitude=${latitude}&longitude=${longitude}` | locations nearby | Returns an array of locations nearby the entered latitude and longitude. Requires an api key, latitude and longitude.                           |
+| GET    | `earth911.getLocationDetails${this.apiKey}&location_id=${id}`                        | location details | Returns details about the location with the corresponding location_id. Requires a successful searchLocations request, api key, and location_id. |
+| GET    | `earth911.getFamilies${this.apiKey}&family_type_id=1`                                | categories       | Returns all of the available categories for sorting materials. Requires an api key.                                                             |
+| GET    | `earth911.getPostalData${this.apiKey}&postal_code=${postal_code}&country=${country}` | postal code      | Returns properly processed location from the entered postal code.. Requires an api key, postal code, and country.                               |
 
 #### User Routes
 
@@ -53,56 +56,112 @@ To get the server running locally:
 
 # Data Model
 
-🚫This is just an example. Replace this with your data model
+## Schema Definitions
 
-#### 2️⃣ ORGANIZATIONS
+- `!` denotes a required field.
+- integer: Int
+- boolean: Boolean
+- float: Float
+- string: String
 
----
-
-```
-{
-  id: UUID
-  name: STRING
-  industry: STRING
-  paid: BOOLEAN
-  customer_id: STRING
-  subscription_id: STRING
-}
-```
-
-#### USERS
+#### QUERY TYPES
 
 ---
 
 ```
-{
-  id: UUID
-  organization_id: UUID foreign key in ORGANIZATIONS table
-  first_name: STRING
-  last_name: STRING
-  role: STRING [ 'owner', 'supervisor', 'employee' ]
-  email: STRING
-  phone: STRING
-  cal_visit: BOOLEAN
-  emp_visit: BOOLEAN
-  emailpref: BOOLEAN
-  phonepref: BOOLEAN
-}
+ type Query {
+    material(id: Int): Material
+    materials: [Material]
+    family: Family
+    postal_code(postal_code: String!, country: String!): PostalCode
+    families: [Family]
+    locations(latitude: Float!, longitude: Float!): [Location]
+  }
 ```
 
-## 2️⃣ Actions
+#### FAMILY
 
-🚫 This is an example, replace this with the actions that pertain to your backend
+---
 
-`getOrgs()` -> Returns all organizations
+```
+type Family {
+    material_ids: [Int]
+    family_id: Int
+    description: String
+    family_type_id: Int
+  }
+```
 
-`getOrg(orgId)` -> Returns a single organization by ID
+#### MATERIAL
 
-`addOrg(org)` -> Returns the created org
+---
 
-`updateOrg(orgId)` -> Update an organization by ID
+```
+type Material {
+    description: String
+    material_id: Int!
+    long_description: String
+    notes: String
+    dropoff: Boolean
+    pickup: Boolean
+    bin_trash: Boolean
+    bin_recycle: Boolean
+    bin_compost: Boolean
+  }
+```
 
-`deleteOrg(orgId)` -> Delete an organization by ID
+#### LOCATION
+
+---
+
+```
+type Location {
+    curbside: Boolean
+    municipal: Boolean
+    description: String
+    longitude: Float
+    latitude: Float
+    address: String
+    city: String
+    province: String
+    country: String
+    postal_code: String
+    region: String
+    full_address: String
+    national: Boolean
+    location_type_id: Int
+    event_only: Boolean
+    fax: String
+    hours: String
+    phone: String
+    notes_public: String
+    url: String
+  }
+```
+
+#### POSTAL CODE
+
+---
+
+```
+type PostalCode {
+    postal_code: String!
+    longitude: Float!
+    latitude: Float!
+  }
+```
+
+## Actions
+
+`getAllMaterials()` -> Returns all materials.
+
+`getMaterial({ material_id })` -> Returns a material with the corresponding `material_id`.
+
+`getAllLocations({ latitude, longitude })` -> Returns nearby locations from the given latitude and longitude.
+
+`getPostalData({ postal_code, country })` -> Returns proper location information from the given `postal_code` and `country`.
+
+`getAllFamilies(` -> Returns all categories that contain all of the materials.
 <br>
 <br>
 <br>
@@ -123,10 +182,10 @@ In order for the app to function correctly, the user must set up their own envir
 create a .env file that includes the following:
 
 🚫 These are just examples, replace them with the specifics for your app
-  
- _ STAGING_DB - optional development db for using functionality not available in SQLite
-_ NODE_ENV - set to "development" until ready for "production"
-_ JWT_SECRET - you can generate this by using a python shell and running import random''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#\$%^&amp;_(-_=+)') for i in range(50)])
+
+_ STAGING_DB - optional development db for using functionality not available in SQLite
+_ NODE*ENV - set to "development" until ready for "production"
+* JWT*SECRET - you can generate this by using a python shell and running import random''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#\$%^&amp;*(-_=+)') for i in range(50)])
 _ SENDGRID_API_KEY - this is generated in your Sendgrid account \* stripe_secret - this is generated in the Stripe dashboard
 
 ## Contributing
@@ -168,5 +227,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Frontend Documentation](🚫link to your frontend readme here) for details on the fronend of our project.
-🚫 Add DS iOS and/or Andriod links here if applicable.
+See [Frontend Documentation](https://github.com/Lambda-School-Labs/trashpanda-fe) for details on the fronend of our project.
