@@ -1,11 +1,10 @@
 const knex = require("knex");
 const knexConfig = require("../knexfile.js");
+require("dotenv").config();
+// const dbEnvironment = async () =>  {
+//     return knex(knexConfig[process.env.NODE_ENV])
+// }
 
-
-const dbEnvironment = async () =>  {
-    return knex(knexConfig[process.env.NODE_ENV])
-}
-
-module.exports = dbEnvironment;
+module.exports = knex(knexConfig["development"]);
 
 

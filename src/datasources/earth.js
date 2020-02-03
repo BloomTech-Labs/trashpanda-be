@@ -130,3 +130,4 @@ class EarthAPI extends RESTDataSource {
 }
 
 module.exports = EarthAPI;
+
