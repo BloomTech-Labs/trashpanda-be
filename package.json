@@ -40,5 +40,6 @@
     "testEnvironment": "node",
     "setupFiles": ["dotenv/config"],
     "testPathIgnorePatterns": ["/mock_data/"]
+
   }
 }
