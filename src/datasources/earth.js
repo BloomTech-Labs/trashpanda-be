@@ -121,6 +121,7 @@ class EarthAPI extends RESTDataSource {
           //Get the info, secondary (if no postal_code)
           const response = await this.get(`earth911.getPostalData${this.apiKey}&postal_code=${postal_code}&country=${country}`);
           locationObj = await JSON.parse(response).result;
+          console.log(response)
               //add to knexDB, tertiary (if no postal_code)
               const processedPostal = this.locationObjReducer(locationObj);
               await PostalCodes.add(processedPostal)
