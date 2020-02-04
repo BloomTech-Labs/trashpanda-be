@@ -99,11 +99,10 @@ class EarthAPI extends RESTDataSource {
 
 
   async getMaterial({ material_id }) {
-    const response = await this.get(`earth911.getMaterials${this.apiKey}`, {
-      material_id
-    });
-    const material = JSON.parse(response).result;
-    return this.materialReducer(material[material_id]);
+    const response = await this.getAllMaterials();
+    console.log(response)
+    const material = response.filter(material => material.material_id === material_id)[0];
+    return material;
   }
 
 
