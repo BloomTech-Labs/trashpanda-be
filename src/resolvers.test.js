@@ -1,5 +1,7 @@
 const resolvers = require('./resolvers');
 
+
+
 describe('[Query] in resolvers file', () => {
   const mockContext = {
     dataSources: {
@@ -51,7 +53,7 @@ describe('[Query] in resolvers file', () => {
           description: "T.P.",
           material_id: "007",
           long_description: "They have a grave misunderstanding, the T actually stands for \"Tuxedo\"",
-          bin_trash: false,
+          bin_trash: "panda",
           bin_recycle: true,
           bin_compost: true
         }]
