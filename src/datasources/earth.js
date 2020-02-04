@@ -119,22 +119,23 @@ class EarthAPI extends RESTDataSource {
   async getPostalData({ postal_code, country }) {
     let locationObj = {};
     //check knexDB first (find postal_code)
-    const dbPostalCodes = await PostalCodes.findByPostalCode(postal_code);
-    if (dbPostalCodes) {
-      //return the postal_code from knexDB (if postal_code)
-      return dbPostalCodes;
-    } else {
-      //Get the info, secondary (if no postal_code)
-      const response = await this.get(
-        `earth911.getPostalData${this.apiKey}&postal_code=${postal_code}&country=${country}`
-      );
-      locationObj = await JSON.parse(response).result;
-      //add to knexDB, tertiary (if no postal_code)
-      const processedPostal = this.locationObjReducer(locationObj);
-      await PostalCodes.add(processedPostal);
-      return processedPostal;
-    }
+
+      const dbPostalCodes = await PostalCodes.findByPostalCode(postal_code)
+      if(dbPostalCodes){
+          //return the postal_code from knexDB (if postal_code)
+          return dbPostalCodes
+      } else { 
+          //Get the info, secondary (if no postal_code)
+          const response = await this.get(`earth911.getPostalData${this.apiKey}&postal_code=${postal_code}&country=${country}`);
+          locationObj = await JSON.parse(response).result;
+              //add to knexDB, tertiary (if no postal_code)
+              const processedPostal = this.locationObjReducer(locationObj);
+              await PostalCodes.add(processedPostal)
+              return processedPostal;
+      }
+
   }
 }
 
 module.exports = EarthAPI;
+
