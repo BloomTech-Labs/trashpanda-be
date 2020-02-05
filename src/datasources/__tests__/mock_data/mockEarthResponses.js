@@ -125,46 +125,7 @@ const mockLocationDetailsJson = {
 const mockLocationDetailsReduced = {
   // Q1RTNVBdXFdD
   full_address: "425 South 15th Avenue, Phoenix, AZ 85007",
-  national: false,
-  updated: "2014-04-24T10:24:26",
-  postal_code: "85007",
-  location_type_id: 0,
-  municipal: false,
-  city: "Phoenix",
-  event_only: false,
-  latitude: 33.44314543132956,
-  province: "AZ",
-  fax: "",
-  description: "Bio PAPPEL International",
-  curbside: false,
-  hours: "Monday to Friday 7:30am to 3:30pm",
-  phone: "(602) 252-7484",
-  address: "425 South 15th Avenue",
-  notes_public:
-    "This site is located on 15th Avenue and Jefferson. It also offers secure document destruction and is NAID Certified.",
-  created: "2005-06-15T11:51:00",
-  url: "https://www.biopappel.com/en/business-groups/",
-  country: "US",
-  region: "Maricopa",
-  longitude: -112.09071284197763,
-  geocoded: false,
-  materials: [
-    {
-      dropoff: true,
-      description: "Window Envelopes",
-      business: true,
-      url: "",
-      residential: true,
-      notes: "",
-      residential_method: "dropoff",
-      business_method: "both",
-      material_id: 559,
-      pickup: true,
-      pending: "F"
-    }
-  ],
-  notes:
-    "This site is located on 15th Avenue and Jefferson. It also offers secure document destruction and is NAID Certified."
+  ...mockLocationDetailsJson
 };
 
 const mockLocationDetailsOriginal = `{
