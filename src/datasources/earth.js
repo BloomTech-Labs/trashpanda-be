@@ -31,11 +31,11 @@ class EarthAPI extends RESTDataSource {
     };
   }
 
-  locationObjReducer(locationObj) {
+  postalDataReducer(postalData) {
     return {
-      postal_code: locationObj.postal_code,
-      latitude: locationObj.latitude,
-      longitude: locationObj.longitude
+      postal_code: postalData.postal_code,
+      latitude: postalData.latitude,
+      longitude: postalData.longitude
     };
   }
 
@@ -72,13 +72,13 @@ class EarthAPI extends RESTDataSource {
       : [];
   }
 
-  getLocationsForMaterial = material_id => {
+  getLocationsForMaterial(material_id) {
     if (material_id) {
       return `earth911.searchLocations${this.apiKey}&material_id=${material_id}`;
     } else {
       return `earth911.searchLocations${this.apiKey}`;
     }
-  };
+  }
 
   async getAllLocations({ latitude, longitude, material_id }) {
     //find locations near me
@@ -96,13 +96,15 @@ class EarthAPI extends RESTDataSource {
       : [];
 
     //get location details for each location_id
-    return locationIds.map(async id => {
-      const locationDetails = await this.get(
-        `earth911.getLocationDetails${this.apiKey}&location_id=${id}`
-      );
-      const parsedDetails = JSON.parse(locationDetails);
-      return this.locationReducer(parsedDetails.result[id]);
-    });
+    return Promise.all(
+      locationIds.map(async id => {
+        const locationDetails = await this.get(
+          `earth911.getLocationDetails${this.apiKey}&location_id=${id}`
+        );
+        const parsedDetails = JSON.parse(locationDetails);
+        return this.locationReducer(parsedDetails.result[id]);
+      })
+    );
   }
 
   async getMaterial({ material_id }) {
@@ -114,27 +116,24 @@ class EarthAPI extends RESTDataSource {
 
   // POSTAL DATA AND LAT/LONG
   // Despite the documentation, this query requires the country
-
   async getPostalData({ postal_code, country }) {
-    let locationObj = {};
     //check knexDB first (find postal_code)
-
-      const dbPostalCodes = await PostalCodes.findByPostalCode(postal_code)
-      if(dbPostalCodes){
-          //return the postal_code from knexDB (if postal_code)
-          return dbPostalCodes
-      } else { 
-          //Get the info, secondary (if no postal_code)
-          const response = await this.get(`earth911.getPostalData${this.apiKey}&postal_code=${postal_code}&country=${country}`);
-          locationObj = await JSON.parse(response).result;
-              //add to knexDB, tertiary (if no postal_code)
-              const processedPostal = this.locationObjReducer(locationObj);
-              await PostalCodes.add(processedPostal)
-              return processedPostal;
-      }
-
+    const dbPostalCodes = await PostalCodes.findByPostalCode(postal_code);
+    if (dbPostalCodes) {
+      //return the postal_code from knexDB (if postal_code)
+      return dbPostalCodes;
+    } else {
+      //Get the info, secondary (if no postal_code)
+      const response = await this.get(
+        `earth911.getPostalData${this.apiKey}&postal_code=${postal_code}&country=${country}`
+      );
+      const postalData = await JSON.parse(response).result;
+      //add to knexDB, tertiary (if no postal_code)
+      const processedPostal = this.postalDataReducer(postalData);
+      PostalCodes.add(processedPostal);
+      return processedPostal;
+    }
   }
 }
 
 module.exports = EarthAPI;
-
