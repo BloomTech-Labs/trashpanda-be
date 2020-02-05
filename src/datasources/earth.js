@@ -109,13 +109,14 @@ class EarthAPI extends RESTDataSource {
 
   async getMaterial({ material_id }) {
     const response = await this.getAllMaterials();
-    console.log(response)
-    const material = response.filter(material => material.material_id === material_id)[0];
+    console.log(response);
+    const material = response.filter(
+      material => material.material_id === material_id
+    )[0];
     return material;
   }
 
   // POSTAL DATA AND LAT/LONG
-  // Despite the documentation, this query requires the country
   async getPostalData({ postal_code, country }) {
     //check knexDB first (find postal_code)
     const dbPostalCodes = await PostalCodes.findByPostalCode(postal_code);
@@ -133,6 +134,15 @@ class EarthAPI extends RESTDataSource {
       PostalCodes.add(processedPostal);
       return processedPostal;
     }
+  }
+
+  async getByFamilyId({ family_id }) {
+    const response = await this.getAllFamilies();
+    const family = response.filter(family => family.family_id === family_id)[0];
+    const material_list = family.material_ids.map(material_id =>
+      this.getMaterial({ material_id })
+    );
+    return material_list;
   }
 }
 
