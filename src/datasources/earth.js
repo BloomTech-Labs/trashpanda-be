@@ -136,7 +136,7 @@ class EarthAPI extends RESTDataSource {
     }
   }
 
-  async getByFamilyId({ family_id }) {
+  async getMaterialsByFamilyId({ family_id }) {
     const response = await this.getAllFamilies();
     const family = response.filter(family => family.family_id === family_id)[0];
     const material_list = family.material_ids.map(material_id =>
