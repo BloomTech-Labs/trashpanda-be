@@ -16,6 +16,8 @@ module.exports = {
       dataSources.earthAPI.getPostalData({
         postal_code: postal_code,
         country: country
-      })
+      }),
+    materialsByFamily: (_, { id }, { dataSources }) =>
+      dataSources.earthAPI.getMaterialsByFamilyId({ family_id: id })
   }
 };

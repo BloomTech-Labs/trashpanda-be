@@ -8,6 +8,7 @@ const typeDefs = gql`
     postal_code(postal_code: String!, country: String!): PostalCode
     families: [Family]
     locations(latitude: Float!, longitude: Float!, material_id: Int): [Location]
+    materialsByFamily(id: Int): [Material]
   }
 
   type Family {

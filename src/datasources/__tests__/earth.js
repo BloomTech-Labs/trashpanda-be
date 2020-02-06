@@ -6,7 +6,9 @@ const mockData = require("./mock_data/mockEarthResponses");
 const EarthAPI = require("../earth");
 
 const mocks = {
-  get: jest.fn()
+  get: jest.fn(),
+  getAllFamilies: jest.fn(),
+  getMaterial: jest.fn()
 };
 
 const datasource = new EarthAPI();
@@ -57,7 +59,7 @@ describe("[EarthAPI Queries]", () => {
       mocks.get.mockReturnValueOnce(mockData.mockFamiliesResponseOriginal);
 
       const res = await datasource.getAllFamilies();
-      expect(res).toEqual([mockData.mockFamiliesReduced]);
+      expect(res).toEqual(mockData.mockFamiliesArray);
     });
   });
 
@@ -96,6 +98,27 @@ describe("[EarthAPI Queries]", () => {
         country: "US"
       });
       expect(res).toMatchObject(mockData.mockPostalReduced);
+    });
+  });
+
+  describe("getMaterialsByFamilyId from earth911", () => {
+    it("gets the list on materials, with the passed in family_id, from the api", async () => {
+      datasource.getAllFamilies = mocks.getAllFamilies;
+      datasource.getMaterial = mocks.getMaterial;
+
+      mocks.getAllFamilies.mockReturnValueOnce(mockData.mockFamiliesArray);
+      mocks.getMaterial.mockReturnValueOnce(mockData.mockMaterialsReduced);
+      mocks.getMaterial.mockReturnValueOnce(mockData.mockMaterialsReduced);
+      mocks.getMaterial.mockReturnValueOnce(mockData.mockMaterialsReduced);
+
+      const res = await datasource.getMaterialsByFamilyId({
+        family_id: 1
+      });
+      expect(res).toMatchObject([
+        mockData.mockMaterialsReduced,
+        mockData.mockMaterialsReduced,
+        mockData.mockMaterialsReduced
+      ]);
     });
   });
 });

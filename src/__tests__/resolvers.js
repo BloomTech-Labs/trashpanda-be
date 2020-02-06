@@ -7,7 +7,8 @@ describe("[Query] in resolvers file", () => {
       earthAPI: {
         getAllMaterials: jest.fn(),
         getAllFamilies: jest.fn(),
-        getPostalData: jest.fn()
+        getPostalData: jest.fn(),
+        getMaterialsByFamilyId: jest.fn()
       }
     }
   };
@@ -15,7 +16,8 @@ describe("[Query] in resolvers file", () => {
   const {
     getAllMaterials,
     getAllFamilies,
-    getPostalData
+    getPostalData,
+    getMaterialsByFamilyId
   } = mockContext.dataSources.earthAPI;
 
   it("calls earth.js to get all materials", async () => {
@@ -44,5 +46,13 @@ describe("[Query] in resolvers file", () => {
     );
 
     expect(res).toEqual(resolverData.postalData);
+  });
+
+  it("calls earth.js to get materials by family_id", async () => {
+    getMaterialsByFamilyId.mockReturnValueOnce(resolverData.allMaterials);
+
+    const res = resolvers.Query.materialsByFamily(null, { id: 1 }, mockContext);
+
+    expect(res).toEqual(resolverData.allMaterials);
   });
 });
