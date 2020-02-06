@@ -36,6 +36,21 @@ const mockFamiliesReduced = {
   family_type_id: 1
 };
 
+const mockFamiliesArray = [
+  {
+    material_ids: [1, 2, 3],
+    family_id: 1,
+    description: "Automotive",
+    family_type_id: 1
+  },
+  {
+    material_ids: [1, 2, 3],
+    family_id: 2,
+    description: "Second",
+    family_type_id: 2
+  }
+];
+
 const mockFamiliesJson = {
   material_ids: [1, 2, 3],
   family_id: 1,
@@ -44,7 +59,7 @@ const mockFamiliesJson = {
   family_type_id: 1
 };
 
-const mockFamiliesResponseOriginal = `{"search_time": "00.025142", "num_results": 13, "result": [{"material_ids": [1, 2, 3], "family_id": 1, "description_legacy": "Automobile", "description": "Automotive", "family_type_id": 1}]}`;
+const mockFamiliesResponseOriginal = `{"search_time": "00.025142", "num_results": 13, "result": [{"material_ids": [1, 2, 3], "family_id": 1, "description_legacy": "Automobile", "description": "Automotive", "family_type_id": 1}, {"material_ids": [1, 2, 3], "family_id": 2, "description_legacy": "Second", "description": "Second", "family_type_id": 2}]}`;
 
 const mockPostalJson = {
   province: "AZ",
@@ -211,6 +226,7 @@ module.exports = mockData = {
   mockFamiliesJson,
   mockFamiliesReduced,
   mockFamiliesResponseOriginal,
+  mockFamiliesArray,
   mockPostalJson,
   mockPostalReduced,
   mockPostalOriginal,
