@@ -18,6 +18,8 @@ module.exports = {
         country: country
       }),
     materialsByFamily: (_, { id }, { dataSources }) =>
-      dataSources.earthAPI.getMaterialsByFamilyId({ family_id: id })
+      dataSources.earthAPI.getMaterialsByFamilyId({ family_id: id }),
+    getZip: (_, { latitude, longitude }, { dataSources }) =>
+      dataSources.mapsAPI.getZip(latitude, longitude)
   }
 };
