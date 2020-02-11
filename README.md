@@ -76,6 +76,7 @@ Along with Node.js, we as a team are using Apollo Server and GraphQL (along with
     postal_code(postal_code: String!, country: String!): PostalCode
     families: [Family]
     locations(latitude: Float!, longitude: Float!): [Location]
+    getZip(latitude: String!, longitude: String!): PostalCode
   }
 ```
 
@@ -162,6 +163,8 @@ type PostalCode {
 `getPostalData({ postal_code, country })` -> Returns proper location information from the given `postal_code` and `country`.
 
 `getAllFamilies(` -> Returns all categories that contain all of the materials.
+
+`getZip({ latitude, longitude })` -> Returns a PostalCode object mainly containing the zip code based on latitude/longitude given.
 <br>
 <br>
 <br>
@@ -183,13 +186,12 @@ create a .env file that includes the following:
 
 🚫 These are just examples, replace them with the specifics for your app
 
-_ STAGING_DB - optional development db for using functionality not available in SQLite
+\_ STAGING_DB - optional development db for using functionality not available in SQLite
 
-_ NODE\*ENV - set to "development" until ready for "production"
+\_ NODE\*ENV - set to "development" until ready for "production"
 
 - JWT*SECRET - you can generate this by using a python shell and running import random''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#\$%^&amp;*(-_=+)') for i in range(50)])
   _ SENDGRID_API_KEY - this is generated in your Sendgrid account \* stripe_secret - this is generated in the Stripe dashboard
-
 
 ## Contributing
 

@@ -38,8 +38,11 @@
   },
   "jest": {
     "testEnvironment": "node",
-    "setupFiles": ["dotenv/config"],
-    "testPathIgnorePatterns": ["/mock_data/"]
-
+    "setupFiles": [
+      "dotenv/config"
+    ],
+    "testPathIgnorePatterns": [
+      "/mock_data/"
+    ]
   }
 }

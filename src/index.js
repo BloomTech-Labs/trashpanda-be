@@ -2,6 +2,7 @@ require("dotenv").config();
 const { ApolloServer } = require("apollo-server");
 
 const EarthAPI = require("./datasources/earth");
+const MapQuestAPI = require("./datasources/mapquest");
 const typeDefs = require("./schema");
 const resolvers = require("./resolvers");
 
@@ -9,7 +10,8 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   dataSources: () => ({
-    earthAPI: new EarthAPI()
+    earthAPI: new EarthAPI(),
+    mapsAPI: new MapQuestAPI()
   }),
   //introspection flag fixes 400 response errors on heroku
   introspection: true,
@@ -20,7 +22,6 @@ const server = new ApolloServer({
   }
 });
 
-server.listen({ port: process.env.PORT || 4000 })
-.then(({ url }) => {
+server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
   console.log(`🚀 Server ready at ${url}`);
 });
