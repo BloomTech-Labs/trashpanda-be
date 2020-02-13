@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest --runInBand --watchAll",
     "server": "nodemon src/index.js",
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "coverage": "jest --coverage --detectOpenHandles --forceExit || true"
   },
   "repository": {
     "type": "git",
@@ -43,6 +44,12 @@
     ],
     "testPathIgnorePatterns": [
       "/mock_data/"
+    ],
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**",
+      "!**/__tests__/**"
     ]
   }
 }
