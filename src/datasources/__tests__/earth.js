@@ -23,8 +23,8 @@ describe("[EarthAPI Reducers]", () => {
     });
   });
   describe("familyReducer", () => {
-    it("properly transforms families", () => {
-      expect(datasource.familyReducer(mockData.mockFamiliesJson)).toEqual(
+    it("properly transforms families", async () => {
+      expect(await datasource.familyReducer(mockData.mockFamiliesJson)).toEqual(
         mockData.mockFamiliesReduced
       );
     });
@@ -59,7 +59,8 @@ describe("[EarthAPI Queries]", () => {
       mocks.get.mockReturnValueOnce(mockData.mockFamiliesResponseOriginal);
 
       const res = await datasource.getAllFamilies();
-      expect(res).toEqual(mockData.mockFamiliesArray);
+      const actualResult = await Promise.all(res);
+      expect(actualResult).toEqual(mockData.mockFamiliesArray);
     });
   });
 

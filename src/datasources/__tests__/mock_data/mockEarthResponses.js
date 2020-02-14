@@ -33,7 +33,8 @@ const mockFamiliesReduced = {
   material_ids: [1, 2, 3],
   family_id: 1,
   description: "Automotive",
-  family_type_id: 1
+  family_type_id: 1,
+  image_url: "https://i.imgur.com/Zeb0clO.png"
 };
 
 const mockFamiliesArray = [
@@ -41,13 +42,15 @@ const mockFamiliesArray = [
     material_ids: [1, 2, 3],
     family_id: 1,
     description: "Automotive",
-    family_type_id: 1
+    family_type_id: 1,
+    image_url: "https://i.imgur.com/Zeb0clO.png"
   },
   {
     material_ids: [1, 2, 3],
     family_id: 2,
     description: "Second",
-    family_type_id: 2
+    family_type_id: 2,
+    image_url: "https://i.imgur.com/B7itNtW.png"
   }
 ];
 
