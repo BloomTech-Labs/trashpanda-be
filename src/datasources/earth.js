@@ -1,6 +1,7 @@
 const { RESTDataSource } = require("apollo-datasource-rest");
 const Materials = require("../../database/models/materials-model");
 const PostalCodes = require("../../database/models/postal_codes-model");
+const CategoryImages = require("../../database/models/category_images-model");
 
 class EarthAPI extends RESTDataSource {
   constructor() {
@@ -18,16 +19,19 @@ class EarthAPI extends RESTDataSource {
       // "!!+" converts 0/1 into boolean
       bin_trash: binInfo && !!+binInfo.bin_trash,
       bin_recycle: binInfo && !!+binInfo.bin_recycle,
-      bin_compost: binInfo && !!+binInfo.bin_compost
+      bin_compost: binInfo && !!+binInfo.bin_compost,
+      image_url: binInfo.image_url
     };
   }
 
-  familyReducer(family) {
+  async familyReducer(family) {
+    const response = await CategoryImages.getImageURL(family.family_id)
     return {
       material_ids: family.material_ids,
       family_id: family.family_id,
       description: family.description,
-      family_type_id: family.family_type_id
+      family_type_id: family.family_type_id,
+      image_url: response.image_url
     };
   }
 
@@ -91,8 +95,8 @@ class EarthAPI extends RESTDataSource {
     //extract just the location_id field from the data
     const locationIds = Array.isArray(locationsArr)
       ? locationsArr.map(location => {
-          return location.location_id;
-        })
+        return location.location_id;
+      })
       : [];
 
     //get location details for each location_id
@@ -109,7 +113,6 @@ class EarthAPI extends RESTDataSource {
 
   async getMaterial({ material_id }) {
     const response = await this.getAllMaterials();
-    console.log(response);
     const material = response.filter(
       material => material.material_id === material_id
     )[0];
