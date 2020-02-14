@@ -1,6 +1,10 @@
 node_modules
 *materials.db3
 
+#testing
+/coverage
+testing_notes
+
 # dotenv environment variables file
 .env
 
