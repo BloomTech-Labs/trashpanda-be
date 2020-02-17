@@ -17,6 +17,7 @@ const typeDefs = gql`
     family_id: Int
     description: String
     family_type_id: Int
+    image_url: String
   }
 
   type Material {
@@ -29,6 +30,7 @@ const typeDefs = gql`
     bin_trash: Boolean
     bin_recycle: Boolean
     bin_compost: Boolean
+    image_url: String
   }
 
   type Location {
