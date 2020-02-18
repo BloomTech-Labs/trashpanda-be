@@ -14,7 +14,7 @@ exports.seed = function (knex) {
         { category_id: 96, image_url: "https://i.imgur.com/OGuODCp.png" }, //Garden
         { category_id: 5, image_url: "https://i.imgur.com/XGTZZiZ.png" }, //Glass
         { category_id: 95, image_url: "https://i.imgur.com/AVBtq3Q.png" }, //Hazardous
-        { category_id: 101, image_url: "" }, //Holiday
+        { category_id: 101, image_url: "https://i.imgur.com/X1HgwkW.png" }, //Holiday
         { category_id: 98, image_url: "https://i.imgur.com/1LHBp0H.png" }, //Household
         { category_id: 6, image_url: "https://i.imgur.com/crpnTcY.png" }, //Metal
         { category_id: 7, image_url: "https://i.imgur.com/xUuieJr.png" }, //Paint
