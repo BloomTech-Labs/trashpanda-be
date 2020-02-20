@@ -21,7 +21,7 @@ module.exports = {
     getZip: (_, { latitude, longitude }, { dataSources }) =>
       dataSources.mapsAPI.getZip(latitude, longitude),
     getCluster: (_, { base64 }, { dataSources }) => {
-      return dataSources.datascience.getCluster(base64);
+      return dataSources.datascienceAPI.getCluster(base64);
     }
   }
 };
