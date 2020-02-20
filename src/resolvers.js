@@ -20,8 +20,8 @@ module.exports = {
       dataSources.earthAPI.getMaterialsByFamilyId({ family_id: id }),
     getZip: (_, { latitude, longitude }, { dataSources }) =>
       dataSources.mapsAPI.getZip(latitude, longitude),
-    getCluster: (_, { base64 }, { dataSources }) => {
-      return dataSources.datascienceAPI.getCluster(base64);
+    getCluster: (_, { imageData }, { dataSources }) => {
+      return dataSources.datascienceAPI.getCluster(imageData);
     }
   }
 };
