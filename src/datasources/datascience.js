@@ -8,14 +8,14 @@ class DatascienceAPI extends RESTDataSource {
 
   imageDescriptionReducer(response) {
     return {
-      description: response.name //or something, whatever they call it
+      description: response.cluster //or something, whatever they call it
     };
   }
 
   async getImageDescription(base64) {
     //process base64 and tack on to end of base URL?
     //not sure if DS will require a get or post
-    const response = await this.get(`${base64}`);
+    const response = await this.post(``, { data: base64 });
     return this.imageDescriptionReducer(response);
   }
 }
