@@ -1,6 +1,5 @@
 module.exports = {
   Query: {
-    //Do not place curlys after arrow!
     materials: (_, __, { dataSources }) =>
       dataSources.earthAPI.getAllMaterials(),
     families: (_, __, { dataSources }) => dataSources.earthAPI.getAllFamilies(),
@@ -20,6 +19,9 @@ module.exports = {
     materialsByFamily: (_, { id }, { dataSources }) =>
       dataSources.earthAPI.getMaterialsByFamilyId({ family_id: id }),
     getZip: (_, { latitude, longitude }, { dataSources }) =>
-      dataSources.mapsAPI.getZip(latitude, longitude)
+      dataSources.mapsAPI.getZip(latitude, longitude),
+    getCluster: (_, { base64 }, { dataSources }) => {
+      return dataSources.datascience.getCluster(base64);
+    }
   }
 };
