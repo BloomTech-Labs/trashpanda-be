@@ -6,17 +6,25 @@ class DatascienceAPI extends RESTDataSource {
     this.baseURL = `http:tpds-api.herokuapp.com/detect/`;
   }
 
-  imageDescriptionReducer(response) {
+  clusterReducer(response) {
     return {
-      description: response.cluster //or something, whatever they call it
+      status: response.status,
+      cluster: response.cluster,
+      materials: response.materials
     };
   }
 
-  async getImageDescription(base64) {
-    //process base64 and tack on to end of base URL?
-    //not sure if DS will require a get or post
-    const response = await this.post(``, { data: base64 });
-    return this.imageDescriptionReducer(response);
+  getCluster(base64) {
+    // sample response data until DS gets the API up
+    const sampleResponse = {
+      status: "success",
+      cluster: "plastic_containers",
+      materials: [593, 466, 621, 471, 236, 677]
+    };
+
+    //TODO DS api query goes here
+    
+    return this.clusterReducer(sampleResponse);
   }
 }
 

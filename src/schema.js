@@ -10,11 +10,13 @@ const typeDefs = gql`
     locations(latitude: Float!, longitude: Float!, material_id: Int): [Location]
     materialsByFamily(id: Int): [Material]
     getZip(latitude: String!, longitude: String!): PostalCode
-    imageInfo(base64: String): ImageInfo
+    getCluster(imageData: String!): Cluster
   }
 
-  type ImageInfo {
-    description: String
+  type Cluster {
+    status: String
+    cluster: String
+    materials: [Int]
   }
 
   type Family {
