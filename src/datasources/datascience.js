@@ -3,7 +3,7 @@ const { RESTDataSource } = require("apollo-datasource-rest");
 class DatascienceAPI extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = `https://gentle-mesa-73091.herokuapp.com/detect`;
+    this.baseURL = `https://gentle-mesa-73091.herokuapp.com`;
   }
 
   clusterReducer(response) {
@@ -16,17 +16,8 @@ class DatascienceAPI extends RESTDataSource {
   }
 
   async getCluster(imageData) {
-    // sample response data until DS gets the API up
-    const sampleResponse = {
-      status: "success",
-      cluster_name: "Plastic Sample",
-      cluster: "plastic_containers",
-      materials: [593, 466, 621, 471, 236, 677]
-    };
+    const response = await this.post(`detect`, { imgb64: imageData });
 
-    //TODO DS api query goes here
-    const response = await this.post(``, { imgb64: imageData });
-    console.log(response);
     return this.clusterReducer(response);
   }
 }
