@@ -15,7 +15,7 @@ class DatascienceAPI extends RESTDataSource {
     };
   }
 
-  getCluster(base64) {
+  getCluster(imageData) {
     // sample response data until DS gets the API up
     const sampleResponse = {
       status: "success",
@@ -25,7 +25,7 @@ class DatascienceAPI extends RESTDataSource {
     };
 
     //TODO DS api query goes here
-    const response = this.post(``, { imgb64: base64 });
+    const response = this.post(``, { imgb64: imageData });
 
     return this.clusterReducer(response);
   }
