@@ -14,7 +14,8 @@ const typeDefs = gql`
   }
 
   type Cluster {
-    status: String
+    message: String
+    cluster_name: String
     cluster: String
     materials: [Int]
   }

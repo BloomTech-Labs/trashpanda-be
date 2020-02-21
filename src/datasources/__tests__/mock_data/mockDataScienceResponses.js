@@ -1,5 +1,6 @@
 const mockCluster = {
-  status: "success",
+  message: "success",
+  cluster_name: "Plastic sample",
   cluster: "plastic_containers",
   materials: [593, 466, 621, 471, 236, 677]
 };
