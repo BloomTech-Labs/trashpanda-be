@@ -21,8 +21,15 @@ module.exports = {
       dataSources.earthAPI.getMaterialsByFamilyId({ family_id: id }),
     getZip: (_, { latitude, longitude }, { dataSources }) =>
       dataSources.mapsAPI.getZip(latitude, longitude),
-    getCluster: (_, { imageData }, { dataSources }) => {
-      return dataSources.datascienceAPI.getCluster(imageData);
+    getCluster: async (_, { imageData }, { dataSources }) => {
+      const cluster = await dataSources.datascienceAPI.getCluster(imageData);
+      const materials = await Promise.all(
+        cluster.materials.map(id =>
+          dataSources.earthAPI.getMaterial({ material_id: id })
+        )
+      );
+      const clusterWithMaterials = { ...cluster, materials: materials };
+      return clusterWithMaterials;
     }
   }
 };
