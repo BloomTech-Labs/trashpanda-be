@@ -17,7 +17,7 @@ const typeDefs = gql`
     message: String
     cluster_name: String
     cluster: String
-    materials: [Int]
+    materials: [Material]
   }
 
   type Family {
