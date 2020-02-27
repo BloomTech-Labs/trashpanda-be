@@ -4,20 +4,20 @@ exports.seed = function (knex) {
     .del()
     .then(async function () {
       // Inserts seed entries
-      await knex('materials').insert([{ material_id: 445, bin_trash: true, bin_recycle: false, bin_compost: false, bin_special: false, image_url: "" }]);
-      await knex('materials').insert([{ material_id: 60, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/TWrU4fx.png" }]);
-      await knex('materials').insert([{ material_id: 446, bin_trash: true, bin_recycle: false, bin_compost: false, bin_special: false, image_url: "" }]);
-      await knex('materials').insert([{ material_id: 447, bin_trash: true, bin_recycle: false, bin_compost: false, bin_special: false, image_url: "" }]);
+      await knex('materials').insert([{ material_id: 445, bin_trash: true, bin_recycle: false, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/0iJLLU4.png" }]);
+      await knex('materials').insert([{ material_id: 60, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/OTAe7id.png" }]);
+      await knex('materials').insert([{ material_id: 446, bin_trash: true, bin_recycle: false, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/hqX84xU.png" }]);
+      await knex('materials').insert([{ material_id: 447, bin_trash: true, bin_recycle: false, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/o46fIib.png" }]);
       await knex('materials').insert([{ material_id: 449, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "" }]);
-      await knex('materials').insert([{ material_id: 450, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "" }]);
-      await knex('materials').insert([{ material_id: 448, bin_trash: true, bin_recycle: false, bin_compost: false, bin_special: false, image_url: "" }]);
+      await knex('materials').insert([{ material_id: 450, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/0IYzfe5.png" }]);
+      await knex('materials').insert([{ material_id: 448, bin_trash: true, bin_recycle: false, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/9p3hbYY.png" }]);
       await knex('materials').insert([{ material_id: 93, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "" }]);
-      await knex('materials').insert([{ material_id: 455, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "" }]);
-      await knex('materials').insert([{ material_id: 619, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "" }]);
+      await knex('materials').insert([{ material_id: 455, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/Qw6uy1c.png" }]);
+      await knex('materials').insert([{ material_id: 619, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/rP8foyK.png" }]);
       await knex('materials').insert([{ material_id: 452, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "" }]);
       await knex('materials').insert([{ material_id: 413, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "" }]);
-      await knex('materials').insert([{ material_id: 62, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "" }]);
-      await knex('materials').insert([{ material_id: 61, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/EQ3DM0v.png" }]);
+      await knex('materials').insert([{ material_id: 62, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/AIwjZKy.png" }]);
+      await knex('materials').insert([{ material_id: 61, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/VJz7sfi.png" }]);
       await knex('materials').insert([{ material_id: 454, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "" }]);
       await knex('materials').insert([{ material_id: 456, bin_trash: true, bin_recycle: false, bin_compost: false, bin_special: false, image_url: "" }]);
       await knex('materials').insert([{ material_id: 63, bin_trash: true, bin_recycle: false, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/PWxNxXc.png" }]);
@@ -32,7 +32,7 @@ exports.seed = function (knex) {
       await knex('materials').insert([{ material_id: 65, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/c5taE2c.png" }]);
       await knex('materials').insert([{ material_id: 361, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "" }]);
       await knex('materials').insert([{ material_id: 465, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "" }]);
-      await knex('materials').insert([{ material_id: 466, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "" }]);
+      await knex('materials').insert([{ material_id: 466, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/DTmzAcA.png" }]);
       await knex('materials').insert([{ material_id: 467, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "" }]);
       await knex('materials').insert([{ material_id: 468, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "" }]);
       await knex('materials').insert([{ material_id: 355, bin_trash: true, bin_recycle: false, bin_compost: false, bin_special: false, image_url: "" }]);
@@ -52,7 +52,7 @@ exports.seed = function (knex) {
       await knex('materials').insert([{ material_id: 187, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/QoEQcks.png" }]);
       await knex('materials').insert([{ material_id: 353, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/wXdCTqD.png" }]);
       await knex('materials').insert([{ material_id: 121, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/eL73lYE.png" }]);
-      await knex('materials').insert([{ material_id: 521, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "" }]);
+      await knex('materials').insert([{ material_id: 521, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/eL73lYE.png" }]);
       await knex('materials').insert([{ material_id: 591, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/zq4LSOV.png" }]);
       await knex('materials').insert([{ material_id: 104, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/iHuDrJV.png" }]);
       await knex('materials').insert([{ material_id: 70, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/4hbX8mz.png" }]);
@@ -153,7 +153,7 @@ exports.seed = function (knex) {
       await knex('materials').insert([{ material_id: 702, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/1pVWvbP.png" }]);
       await knex('materials').insert([{ material_id: 195, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/7VESSU6.png" }]);
       await knex('materials').insert([{ material_id: 101, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/OetP3D6.png" }]);
-      await knex('materials').insert([{ material_id: 371, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "" }]);
+      await knex('materials').insert([{ material_id: 371, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/16jB7Ut.png" }]);
       await knex('materials').insert([{ material_id: 74, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/vpw0DAy.png" }]);
       await knex('materials').insert([{ material_id: 183, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/Yg7rrqH.png" }]);
       await knex('materials').insert([{ material_id: 253, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/9Tyzyj6.png" }]);
@@ -163,7 +163,7 @@ exports.seed = function (knex) {
       await knex('materials').insert([{ material_id: 529, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/ICwqzDA.png" }]);
       await knex('materials').insert([{ material_id: 182, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/IQqE910.png" }]);
       await knex('materials').insert([{ material_id: 332, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/3Upzisz.png" }]);
-      await knex('materials').insert([{ material_id: 557, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/2WWgBHC.png" }]);
+      await knex('materials').insert([{ material_id: 557, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/sy6qWG6.png" }]);
       await knex('materials').insert([{ material_id: 395, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/eaAud9O.png" }]);
       await knex('materials').insert([{ material_id: 597, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/9FWMkqL.png" }]);
       await knex('materials').insert([{ material_id: 188, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/IfBj8Vm.png" }]);
@@ -241,7 +241,7 @@ exports.seed = function (knex) {
       await knex('materials').insert([{ material_id: 236, bin_trash: false, bin_recycle: false, bin_compost: true, bin_special: false, image_url: "https://i.imgur.com/xnlggBI.png" }]);
       await knex('materials').insert([{ material_id: 44, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/l3BcH6N.png" }]);
       await knex('materials').insert([{ material_id: 1, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/g4qaM1Z.png" }]);
-      await knex('materials').insert([{ material_id: 260, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/3AJPoWP.png" }]);
+      await knex('materials').insert([{ material_id: 260, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/EYTzITa.png" }]);
       await knex('materials').insert([{ material_id: 357, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/t5lWRlp.png" }]);
       await knex('materials').insert([{ material_id: 579, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/tvaA5a6.png" }]);
       await knex('materials').insert([{ material_id: 221, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/fPNjpcS.png" }]);
@@ -257,14 +257,14 @@ exports.seed = function (knex) {
       await knex('materials').insert([{ material_id: 623, bin_trash: false, bin_recycle: false, bin_compost: true, bin_special: false, image_url: "https://i.imgur.com/pamRCTl.png" }]);
       await knex('materials').insert([{ material_id: 99, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/TjF0YiM.png" }]);
       await knex('materials').insert([{ material_id: 704, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/GLS0q1j.png" }]);
-      await knex('materials').insert([{ material_id: 271, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "" }]);
+      await knex('materials').insert([{ material_id: 271, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/Oe7FLqL.png" }]);
       await knex('materials').insert([{ material_id: 272, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/fP7J7z8.png" }]);
       await knex('materials').insert([{ material_id: 58, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/ZJpCdzw.png" }]);
       await knex('materials').insert([{ material_id: 273, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/KzeBVF3.png" }]);
       await knex('materials').insert([{ material_id: 2, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/MYIxvEN.png" }]);
       await knex('materials').insert([{ material_id: 404, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/wvyXcKQ.png" }]);
-      await knex('materials').insert([{ material_id: 98, bin_trash: false, bin_recycle: false, bin_compost: true, bin_special: false, image_url: "" }]);
-      await knex('materials').insert([{ material_id: 342, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "" }]);
+      await knex('materials').insert([{ material_id: 98, bin_trash: false, bin_recycle: false, bin_compost: true, bin_special: false, image_url: "https://i.imgur.com/IjIED5R.png" }]);
+      await knex('materials').insert([{ material_id: 342, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/4KuOHFZ.png" }]);
       await knex('materials').insert([{ material_id: 659, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/kG0sseU.png" }]);
       await knex('materials').insert([{ material_id: 405, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/oOnJTch.png" }]);
       await knex('materials').insert([{ material_id: 191, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/7nR2ryw.png" }]);
@@ -279,13 +279,13 @@ exports.seed = function (knex) {
       await knex('materials').insert([{ material_id: 250, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/qHUXFGz.png" }]);
       await knex('materials').insert([{ material_id: 42, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/t20Dc6v.png" }]);
       await knex('materials').insert([{ material_id: 665, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/WeSzYrT.png" }]);
-      await knex('materials').insert([{ material_id: 277, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/iX3uYyO.png" }]);
+      await knex('materials').insert([{ material_id: 277, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/r4MwEqf.png" }]);
       await knex('materials').insert([{ material_id: 179, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/P6bOCRP.png" }]);
       await knex('materials').insert([{ material_id: 54, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/UXDRFTi.png" }]);
       await knex('materials').insert([{ material_id: 190, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/1VY5Jqo.png" }]);
       await knex('materials').insert([{ material_id: 396, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/kvUeENF.png" }]);
       await knex('materials').insert([{ material_id: 531, bin_trash: false, bin_recycle: false, bin_compost: true, bin_special: false, image_url: "https://i.imgur.com/pKQicTw.png" }]);
-      await knex('materials').insert([{ material_id: 567, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/uKPskLA.png" }]);
+      await knex('materials').insert([{ material_id: 567, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/Yr6qDI6.png" }]);
       await knex('materials').insert([{ material_id: 593, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/F41e1VF.png" }]);
       await knex('materials').insert([{ material_id: 354, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/BQb2Nt2.png" }]);
       await knex('materials').insert([{ material_id: 655, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/QJuVEhb.png" }]);
@@ -295,7 +295,7 @@ exports.seed = function (knex) {
       await knex('materials').insert([{ material_id: 500, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/gtTGyUm.png" }]);
       await knex('materials').insert([{ material_id: 523, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/MtMQAx2.png" }]);
       await knex('materials').insert([{ material_id: 189, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/qBbalo7.png" }]);
-      await knex('materials').insert([{ material_id: 214, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "" }]);
+      await knex('materials').insert([{ material_id: 214, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/luKF9ib.png" }]);
       await knex('materials').insert([{ material_id: 543, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/Ih9x1so.png" }]);
       await knex('materials').insert([{ material_id: 577, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/jpOMHp0.png" }]);
       await knex('materials').insert([{ material_id: 495, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/w1gJr3V.png" }]);
@@ -312,7 +312,7 @@ exports.seed = function (knex) {
       await knex('materials').insert([{ material_id: 258, bin_trash: false, bin_recycle: false, bin_compost: true, bin_special: true, image_url: "https://i.imgur.com/OjCnKSj.png" }]);
       await knex('materials').insert([{ material_id: 545, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/4ZgmBLU.png" }]);
       await knex('materials').insert([{ material_id: 397, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/eSf6BHU.png" }]);
-      await knex('materials').insert([{ material_id: 565, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "" }]);
+      await knex('materials').insert([{ material_id: 565, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/5NMBj1A.png" }]);
       await knex('materials').insert([{ material_id: 213, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/9v9G1pk.png" }]);
       await knex('materials').insert([{ material_id: 377, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/rAcStMG.png" }]);
       await knex('materials').insert([{ material_id: 409, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/mlAmAAM.png" }]);
@@ -350,7 +350,7 @@ exports.seed = function (knex) {
       await knex('materials').insert([{ material_id: 633, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/qDqdhjc.png" }]);
       await knex('materials').insert([{ material_id: 498, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/csTkiVo.png" }]);
       await knex('materials').insert([{ material_id: 611, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/zdjcBHx.png" }]);
-      await knex('materials').insert([{ material_id: 402, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/CQ0ppgK.png" }]);
+      await knex('materials').insert([{ material_id: 402, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/6i30IVH.png" }]);
       await knex('materials').insert([{ material_id: 499, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/75oGX7q.png" }]);
       await knex('materials').insert([{ material_id: 408, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/x0i2paC.png" }]);
       await knex('materials').insert([{ material_id: 492, bin_trash: false, bin_recycle: true, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/2bIFYid.png" }]);
@@ -360,7 +360,7 @@ exports.seed = function (knex) {
       await knex('materials').insert([{ material_id: 223, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/vwCSo46.png" }]);
       await knex('materials').insert([{ material_id: 399, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/AqyYqjh.png" }]);
       await knex('materials').insert([{ material_id: 573, bin_trash: false, bin_recycle: false, bin_compost: false, bin_special: true, image_url: "https://i.imgur.com/nsyuH1F.png" }]);
-      await knex('materials').insert([{ material_id: 412, bin_trash: true, bin_recycle: false, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/Zqctv76.png" }]);
+      await knex('materials').insert([{ material_id: 412, bin_trash: true, bin_recycle: false, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/QncQNMz.png" }]);
       await knex('materials').insert([{ material_id: 411, bin_trash: true, bin_recycle: false, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/oHmqy8m.png" }]);
       await knex('materials').insert([{ material_id: 234, bin_trash: false, bin_recycle: false, bin_compost: true, bin_special: false, image_url: "https://i.imgur.com/i9mLYKM.png" }]);
       await knex('materials').insert([{ material_id: 441, bin_trash: true, bin_recycle: false, bin_compost: false, bin_special: false, image_url: "https://i.imgur.com/UsARtD2.png" }]);

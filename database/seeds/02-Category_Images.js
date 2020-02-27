@@ -19,7 +19,7 @@ exports.seed = function (knex) {
         { category_id: 6, image_url: "https://i.imgur.com/crpnTcY.png" }, //Metal
         { category_id: 7, image_url: "https://i.imgur.com/xUuieJr.png" }, //Paint
         { category_id: 8, image_url: "https://i.imgur.com/qWAF23j.png" }, //Paper
-        { category_id: 9, image_url: "https://i.imgur.com/0cEIG2s.png" },//Plastic
+        { category_id: 9, image_url: "https://i.imgur.com/YNA58oU.png" },//Plastic
 
 
         //------Everything below this is possibly repeated and possibly NOT retrieved when getting our categories. 
