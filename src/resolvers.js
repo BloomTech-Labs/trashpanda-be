@@ -12,6 +12,8 @@ module.exports = {
       }),
     material: (_, { id }, { dataSources }) =>
       dataSources.earthAPI.getMaterial({ material_id: id }),
+    getMaterialByIDS: (_, { idList }, { dataSources }) =>
+      dataSources.earthAPI.getMaterialByIDS(idList),
     postal_code: (_, { postal_code, country }, { dataSources }) =>
       dataSources.earthAPI.getPostalData({
         postal_code: postal_code,
