@@ -4,6 +4,7 @@ const typeDefs = gql`
   type Query {
     material(id: Int): Material
     materials: [Material]
+    getMaterialByIDS(idList: [Int]): [Material]
     family: Family
     postal_code(postal_code: String!, country: String!): PostalCode
     families: [Family]

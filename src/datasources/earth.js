@@ -25,7 +25,7 @@ class EarthAPI extends RESTDataSource {
   }
 
   async familyReducer(family) {
-    const response = await CategoryImages.getImageURL(family.family_id)
+    const response = await CategoryImages.getImageURL(family.family_id);
     return {
       material_ids: family.material_ids,
       family_id: family.family_id,
@@ -95,8 +95,8 @@ class EarthAPI extends RESTDataSource {
     //extract just the location_id field from the data
     const locationIds = Array.isArray(locationsArr)
       ? locationsArr.map(location => {
-        return location.location_id;
-      })
+          return location.location_id;
+        })
       : [];
 
     //get location details for each location_id
@@ -117,6 +117,12 @@ class EarthAPI extends RESTDataSource {
       material => material.material_id === material_id
     )[0];
     return material;
+  }
+
+  async getMaterialByIDS(idList) {
+    const response = await this.getAllMaterials();
+    const materials = response.filter(mat => idList.includes(mat.material_id));
+    return materials;
   }
 
   // POSTAL DATA AND LAT/LONG
