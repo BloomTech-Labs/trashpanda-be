@@ -3,7 +3,7 @@ const { RESTDataSource } = require("apollo-datasource-rest");
 class DatascienceAPI extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = `https://gentle-mesa-73091.herokuapp.com`;
+    this.baseURL = process.env.DataScience_URL;
   }
 
   clusterReducer(response) {
