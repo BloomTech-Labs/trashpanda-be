@@ -1,56 +1,55 @@
 // Update with your config settings.
 
 module.exports = {
-
   development: {
-    client: 'sqlite3',
+    client: "sqlite3",
     useNullAsDefault: true,
     connection: {
-      filename: './database/materials.db3',
+      filename: "./database/materials.db3",
     },
     pool: {
       afterCreate: (conn, done) => {
-        conn.run('PRAGMA foreign_keys = ON', done);
+        conn.run("PRAGMA foreign_keys = ON", done);
       },
     },
     migrations: {
-      directory: './database/migrations',
+      directory: "./database/migrations",
     },
     seeds: {
-      directory: './database/seeds',
+      directory: "./database/seeds",
     },
   },
 
-  testing: {//knex migrate:latest --env testing
-    client: 'sqlite3',
+  testing: {
+    //knex migrate:latest --env testing
+    client: "sqlite3",
     connection: {
-      filename: './database/materials.db3'
+      filename: "./database/materials.db3",
     },
     useNullAsDefault: true,
     pool: {
-      afterCreate: (conn,done)=>{//make sure this is in production object too later
-        conn.run('PRAGMA foreign_keys = ON', done)
-      }
+      afterCreate: (conn, done) => {
+        //make sure this is in production object too later
+        conn.run("PRAGMA foreign_keys = ON", done);
+      },
     },
     migrations: {
-      directory: './database/migrations'
+      directory: "./database/migrations",
     },
     seeds: {
-      directory: './database/seeds'
+      directory: "./database/seeds",
     },
   },
 
   production: {
-    client: 'pg',
-    connection: process.env.DATABASE_URL,
+    client: "pg",
+    connection: process.env.DATABASE_URL + "?ssl=true",
     migrations: {
-      directory: './database/migrations'
+      directory: "./database/migrations",
     },
     seeds: {
-      directory: './database/seeds'
+      directory: "./database/seeds",
     },
-    useNullAsDefault: true
-  }
-
+    useNullAsDefault: true,
+  },
 };
-
