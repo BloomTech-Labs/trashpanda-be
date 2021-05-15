@@ -20,7 +20,7 @@ class EarthAPI extends RESTDataSource {
       bin_trash: binInfo && !!+binInfo.bin_trash,
       bin_recycle: binInfo && !!+binInfo.bin_recycle,
       bin_compost: binInfo && !!+binInfo.bin_compost,
-      image_url: binInfo.image_url
+      image_url: binInfo && binInfo.image_url,
     };
   }
 
@@ -31,7 +31,7 @@ class EarthAPI extends RESTDataSource {
       family_id: family.family_id,
       description: family.description,
       family_type_id: family.family_type_id,
-      image_url: response.image_url
+      image_url: response.image_url,
     };
   }
 
@@ -39,14 +39,14 @@ class EarthAPI extends RESTDataSource {
     return {
       postal_code: postalData.postal_code,
       latitude: postalData.latitude,
-      longitude: postalData.longitude
+      longitude: postalData.longitude,
     };
   }
 
   locationReducer(location) {
     return {
       ...location,
-      full_address: `${location.address}, ${location.city}, ${location.province} ${location.postal_code}`
+      full_address: `${location.address}, ${location.city}, ${location.province} ${location.postal_code}`,
     };
   }
 
@@ -55,9 +55,9 @@ class EarthAPI extends RESTDataSource {
     const response = await this.get(`earth911.getMaterials${this.apiKey}`);
     const result = JSON.parse(response).result;
     if (Array.isArray(result)) {
-      return result.map(material => {
+      return result.map((material) => {
         const dbMaterial = dbMaterials.filter(
-          dbMat => dbMat.material_id === material.material_id
+          (dbMat) => dbMat.material_id === material.material_id
         )[0];
         return this.materialReducer(dbMaterial, material);
       });
@@ -72,7 +72,7 @@ class EarthAPI extends RESTDataSource {
     );
     const result = JSON.parse(response).result;
     return Array.isArray(result)
-      ? result.map(family => this.familyReducer(family))
+      ? result.map((family) => this.familyReducer(family))
       : [];
   }
 
@@ -94,14 +94,14 @@ class EarthAPI extends RESTDataSource {
 
     //extract just the location_id field from the data
     const locationIds = Array.isArray(locationsArr)
-      ? locationsArr.map(location => {
+      ? locationsArr.map((location) => {
           return location.location_id;
         })
       : [];
 
     //get location details for each location_id
     return Promise.all(
-      locationIds.map(async id => {
+      locationIds.map(async (id) => {
         const locationDetails = await this.get(
           `earth911.getLocationDetails${this.apiKey}&location_id=${id}`
         );
@@ -114,14 +114,16 @@ class EarthAPI extends RESTDataSource {
   async getMaterial({ material_id }) {
     const response = await this.getAllMaterials();
     const material = response.filter(
-      material => material.material_id === material_id
+      (material) => material.material_id === material_id
     )[0];
     return material;
   }
 
   async getMaterialByIDS(idList) {
     const response = await this.getAllMaterials();
-    const materials = response.filter(mat => idList.includes(mat.material_id));
+    const materials = response.filter((mat) =>
+      idList.includes(mat.material_id)
+    );
     return materials;
   }
 
@@ -147,8 +149,10 @@ class EarthAPI extends RESTDataSource {
 
   async getMaterialsByFamilyId({ family_id }) {
     const response = await this.getAllFamilies();
-    const family = response.filter(family => family.family_id === family_id)[0];
-    const material_list = family.material_ids.map(material_id =>
+    const family = response.filter(
+      (family) => family.family_id === family_id
+    )[0];
+    const material_list = family.material_ids.map((material_id) =>
       this.getMaterial({ material_id })
     );
     return material_list;
